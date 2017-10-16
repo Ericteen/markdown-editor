@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {DEFAULT_VAL} from './constants'
-import marked from 'marked'
+import Remarkable from 'remarkable'
 import './App.css';
 
 class App extends Component {
@@ -20,9 +20,10 @@ class App extends Component {
   }
 
   rawMarkup(value) {
-    let rawMarkup = marked(value, { sanitize: true })
+    const md = new Remarkable()
+    let result = md.render(this.state.value)
     return {
-      __html: rawMarkup
+      __html: result
     }
   }
 
